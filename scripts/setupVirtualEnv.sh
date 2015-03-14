@@ -4,7 +4,7 @@
 # with dependencies (see requirements.txt) in the project
 # root directory.
 
-virtualenv --distribute --python=/usr/bin/python2.7 ../venv
+virtualenv --distribute --python=/usr/bin/python3.4 venv
 source ../venv/bin/activate
 pip install -r requirements.txt
 deactivate
