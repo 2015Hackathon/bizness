@@ -1,0 +1,37 @@
+# Compiled Source #
+###################
+*.class
+*.nxj
+*.nxd
+*.pyc
+
+# Project metafiles #
+#####################
+.metadata/
+.recommenders/
+*.iml
+.idea/
+
+# Temporary files #
+###################
+*.swp
+*.tmp
+
+# Virtual environment #
+#######################
+venv/
+
+# TexMaker Files #
+##################
+*.aux
+*.log
+*.synctex.gz
+*.toc
+
+# Editor Swap Files#
+####################
+*~
+
+# Sandbox, for personal experimentation #
+#########################################
+sandbox/
