@@ -35,3 +35,8 @@ venv/
 # Sandbox, for personal experimentation #
 #########################################
 sandbox/
+
+# Boolmberg keys & certificates
+####
+*.key
+*.crt
