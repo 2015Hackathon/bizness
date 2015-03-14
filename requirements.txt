@@ -2,8 +2,11 @@ Flask==0.10.1
 Jinja2==2.7.3
 MarkupSafe==0.23
 PyJWT==0.1.2
+PySocks==1.5.0
 Werkzeug==0.10.1
 gunicorn==19.3.0
-httplib2==0.7.7
+httplib2==0.9
 itsdangerous==0.24
-twilio
+pytz==2014.10
+six==1.9.0
+twilio==3.7.3
