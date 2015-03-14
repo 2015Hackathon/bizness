@@ -6,4 +6,4 @@ Werkzeug==0.10.1
 gunicorn==19.3.0
 httplib2==0.7.7
 itsdangerous==0.24
-twilio==3.3.6
+twilio
