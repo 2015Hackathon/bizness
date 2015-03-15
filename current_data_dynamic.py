@@ -1,0 +1,33 @@
+#!/usr/bin/env python3
+# usage: python3 HistoricalDataRequest.py <host-ip>
+import argparse
+import json
+import ssl
+import sys
+import urllib.request
+
+def request_this(securities, fields):
+
+	data = {
+		"securities": securities,
+		"fields": fields
+	}
+
+
+	req = urllib.request.Request('https://http-api.openbloomberg.com/request?ns=blp&service=refdata&type=ReferenceDataRequest')
+	req.add_header('Content-Type', 'application/json')
+	ctx = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
+	ctx.load_verify_locations(cafile = 'C:\\Users\\Nial\\Documents\\GitHub\\certs\\b.crt')
+	ctx.load_cert_chain(certfile = 'C:\\Users\\Nial\\Documents\\GitHub\\certs\\client.crt', keyfile = 'C:\\Users\\Nial\\Documents\\GitHub\\certs\\client.key')
+	https_sslv23_handler = urllib.request.HTTPSHandler(context=ctx)
+	opener = urllib.request.build_opener(https_sslv23_handler)
+	urllib.request.install_opener(opener)
+	try:
+		res = opener.open(req, data=json.dumps(data).encode("ascii"))
+		return(res.read())
+	except Exception as e:
+		e
+		print(e)
+		return 1
+	return 0
+r = request_this(["CTDEM10Y"], ["PX_LAST"])
