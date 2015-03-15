@@ -12,7 +12,6 @@ def request_this(securities, fields):
 		"fields": fields
 	}
 
-
 	req = urllib.request.Request('https://http-api.openbloomberg.com/request?ns=blp&service=refdata&type=ReferenceDataRequest')
 	req.add_header('Content-Type', 'application/json')
 	ctx = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
