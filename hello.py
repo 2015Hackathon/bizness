@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template,
+from flask import Flask, request, redirect, render_template
 import twilio.twiml
 
 app = Flask(__name__)
@@ -16,7 +16,7 @@ securities = ["geil"]
 @app.route("/index")
 def index():
 	"""Present the main page"""
-	return render_template('index.html')
+	return render_template('templates/index.html')
 
 # @app.route("/phone", methods=['GET', 'POST'])
 # def hello_monkey():
