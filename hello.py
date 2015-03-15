@@ -17,7 +17,7 @@ securities = ["geil", "bp oil"]
 @app.route("/index")
 def index():
 	"""Present the main page"""
-	return render_template('home.html')
+	return render_template('index.html')
 
 # @app.route("/phone", methods=['GET', 'POST'])
 # def hello_monkey():
