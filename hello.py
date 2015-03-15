@@ -3,6 +3,7 @@ from current_data_dynamic import request_this
 import json
 import twilio.twiml
 import ast
+import csv
 
 app = Flask(__name__)
 # Try adding your own number to this list!
@@ -13,30 +14,25 @@ callers = {
 
 securities = ["ACC US Equity", "GOOG US Equity", "AAPL US Equity"]
 
+def get_ab_in_csv(inputC, filename):
+	f = open(filename, newline = '')
+	reader = csv.reader(f, delimiter=',')
+	for row in reader:
+		if inputC == row[0] or inputC == row[1]:
+			return row[0]
+	return 0
+
+def get_ab(inputC):
+	if (0 != get_ab_in_csv(inputC, 'c1.csv')):
+		return get_ab_in_csv(inputC, 'c1.csv')
+	else:
+		return get_ab_in_csv(inputC, 'c2.csv')
+
 @app.route("/")
 @app.route("/index")
 def index():
 	"""Present the main page"""
 	return render_template('index.html')
-
-# @app.route("/phone", methods=['GET', 'POST'])
-# def hello_monkey():
-# 	"""Respond and greet the caller by name."""
-	
-# 	from_number = request.values.get('From', None)
-# 	message_body = request.values.get('Body', None)
-# 	if from_number in callers:
-# 		message = callers[from_number] + ", thanks for the message!" + message_body
-# 	else:
-# 		message = "Non Stratton Oakmont Client, thanks for the message! But please sign up for our Service"
-
-# 	resp = twilio.twiml.Response()
-# 	resp.message(message)
-	
-# 	return str(resp)
-
-# if __name__ == "__main__":
-# 	app.run(debug=True)
 
 @app.route("/phone", methods =['GET', 'POST'])
 def  callhandle():
@@ -47,6 +43,8 @@ def  callhandle():
 
 	from_number = request.values.get('From', None)
 	message_body = request.values.get('Body', None)
+
+	message_valid = get_ab(message_body)
 
 	if from_number in callers:
 		message = "Hello " + callers[from_number] + ", thanks for the message \n"
@@ -70,7 +68,8 @@ def  callhandle():
 			message = "Ok Sir, its time to party like it 1989, the current street price on the following fun stuffs in \n" + "Chocolate = $0.03/g\n" + "Chocolate Milk = $3\n" + "Ethanol = $0.05/l\n"
 
 		# Bloomberg API section
-		if message_body in securities:
+		if message_valid != 0:
+			message_body = message_valid + " US Equity"
 			bloomberg_json = request_this([message_body],["PX_LAST"])
 			bloomberg_dict = ast.literal_eval(bloomberg_json)
 			bloomberg_info = str(bloomberg_dict["data"][0]["securityData"][0]["fieldData"]["PX_LAST"])
@@ -92,7 +91,9 @@ def  callhandle():
 		message = "Hello non Stratton Oakmont Client, thanks for the message!\n"
 		
 		# Bloomberg API section
-		if message_body in securities:
+
+		if message_valid != 0:
+			message_body = message_valid + " US Equity"
 			bloomberg_json = request_this([message_body],["PX_LAST"])
 			bloomberg_dict = ast.literal_eval(bloomberg_json)
 			bloomberg_info = str(bloomberg_dict["data"][0]["securityData"][0]["fieldData"]["PX_LAST"])
