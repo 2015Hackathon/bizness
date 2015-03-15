@@ -10,6 +10,8 @@ callers = {
 "+447934171645": "Mr. Paul",
 }
 
+securities = ["geil"]
+
 @app.route("/")
 @app.route("/index")
 def index():
@@ -65,24 +67,24 @@ def index():
 		</html>
 			"""
 
-@app.route("/phone", methods=['GET', 'POST'])
-def hello_monkey():
-	"""Respond and greet the caller by name."""
+# @app.route("/phone", methods=['GET', 'POST'])
+# def hello_monkey():
+# 	"""Respond and greet the caller by name."""
 	
-	from_number = request.values.get('From', None)
-	message_body = request.values.get('Body', None)
-	if from_number in callers:
-		message = callers[from_number] + ", thanks for the message!" + message_body
-	else:
-		message = "Non Stratton Oakmont Client, thanks for the message! But please sign up for our Service"
+# 	from_number = request.values.get('From', None)
+# 	message_body = request.values.get('Body', None)
+# 	if from_number in callers:
+# 		message = callers[from_number] + ", thanks for the message!" + message_body
+# 	else:
+# 		message = "Non Stratton Oakmont Client, thanks for the message! But please sign up for our Service"
 
-	resp = twilio.twiml.Response()
-	resp.message(message)
+# 	resp = twilio.twiml.Response()
+# 	resp.message(message)
 	
-	return str(resp)
+# 	return str(resp)
 
-if __name__ == "__main__":
-	app.run(debug=True)
+# if __name__ == "__main__":
+# 	app.run(debug=True)
 
 @app.route("/phone", methods =['GET', 'POST'])
 def  callhandle():
@@ -95,7 +97,26 @@ def  callhandle():
 	message_body = request.values.get('Body', None)
 
 	if from_number in callers:
-		if 
-		message = "Hello " + callers[from_number] + ", thanks for the message"
+		message = "Hello " + callers[from_number] + ", thanks for the message \n"
+
+		# Party Time
+		if message_body in ["party time", "party", "p time"]:
+			message = "Are you sure " + callers[from_number] + "?"
+
+		if message_body in ["oh yass", "oh yes"]:
+			message = "Ok Sir, its time to party like its 1989, the current street price the following fun stuffs is \n" + "COCO = $30/g\n" + "Chocolate Milk = $3\n" + "Silly String = $3\n"
+
+		# Bloomberg API section
+		if message_body in securities:
+			#bloomberg_info = 
+			message = message + "You have requested information on: " + message_body + " here you go, have a wonderful day."
+		else: 
+			message = message + "You have requested information on a stock that does not exist, or one we do not have information on currently"
+	
 	else:
-		message = "Hello you are not a Stratton Oakmont Client, but thanks for the message! Please sign "
+		message = "Hello you are not a Stratton Oakmont Client, but thanks for the message! Please sign up with one of our members if you want to use our venerable service - Stratton Oakmont 1989"
+
+	resp = twilio.twiml.Response()
+	resp.message(message)
+	
+	return str(resp)
