@@ -67,6 +67,7 @@ def  callhandle():
 		if message_body in ["yes"]:
 			message = "Ok Sir, its time to party like it 1989, the current street price on the following fun stuffs in \n" + "Chocolate = $0.03/g\n" + "Chocolate Milk = $3\n" + "Ethanol = $0.05/l\n"
 
+
 		# Bloomberg API section
 		if message_valid != 0:
 			message_body = message_valid + " US Equity"
@@ -80,6 +81,7 @@ def  callhandle():
 			resp.message(message)
 			
 			return str(resp)
+
 		else: 
 			message = message + "You have requested information on a stock that does not exist, or one we do not have information on currently"
 			resp = twilio.twiml.Response()
@@ -90,8 +92,12 @@ def  callhandle():
 	else:
 		message = "Hello non Stratton Oakmont Client, thanks for the message!\n"
 		
-		# Bloomberg API section
+		# Registering new members
+		if (len(message_body) >= 10 and message_body[0:9] == "Register"):
+			newName = message_body[9:]
+			callers[from_number] = newName			
 
+		# Bloomberg API section
 		if message_valid != 0:
 			message_body = message_valid + " US Equity"
 			bloomberg_json = request_this([message_body],["PX_LAST"])
@@ -104,6 +110,8 @@ def  callhandle():
 			resp.message(message)
 			
 			return str(resp)
+
+		# Call made to unrecognized ticker or firm
 		else: 
 			message = message + "You have requested information on a stock that does not exist, or one we do not have information on currently.\n" + "Please sign up with one of our members if you want to use our venerable service - Stratton Oakmont 1989"
 			resp = twilio.twiml.Response()
