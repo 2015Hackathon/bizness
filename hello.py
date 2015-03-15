@@ -19,29 +19,23 @@ def index():
 	return """
 		<html>
 		<head>
-		<!-- Basic Page Needs
-		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
 		<meta charset="utf-8">
 		<title>Stratton Oakmont Inc.</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<!-- Mobile Specific Metas
-		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- FONT
-		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
 		<link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-		<!-- CSS
-		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/skeleton.css">
-		<!-- Favicon
-		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
 		<link rel="icon" type="image/png" href="images/favicon.png">
 		</head>
 		<body>
-		<!-- Primary Page Layout
-		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
 		<h1 style="color: green; text-align:center">Stratton Oakmont Inc.</h1>
 		<div style="width:82.5%; height:82.5%;">
 		<div style="float:right; width:54%;margin-top:1%">
@@ -55,8 +49,7 @@ def index():
 		<br>
 		<br>
 		<h5 align="center">Try sending us an SMS with either 'CTDEM10Y' or 'PX LAST' on: +44 166 991 2029</h5>
-		<!-- End Document
-		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
 		</body>
 		</html>
 			"""
@@ -102,11 +95,14 @@ def  callhandle():
 			return str(resp)
 
 		if message_body in ["oh yass", "oh yes"]:
-			message = "Ok Sir, its time to party like its 1989, the current street price the following fun stuffs is \n" + "COCO = $30/g\n" + "Chocolate Milk = $3\n" + "Silly String = $3\n"
+			message = "Ok Sir, its time to party like its 1989, the current street price on the following fun stuffs is \n" + "COCO = $30/g\n" + "Chocolate Milk = $3\n" + "Silly String = $3\n"
 			resp = twilio.twiml.Response()
 			resp.message(message)
 			
 			return str(resp)
+
+		if message_body in ["yes"]:
+			message = "Ok Sir, its time to party like it 1989, the current street price on the following fun stuffs in \n" + "Chocolate = $0.03/g\n" + "Chocolate Milk = $3\n" + "Ethanol = $0.05/l\n"
 
 		# Bloomberg API section
 		if message_body in securities:

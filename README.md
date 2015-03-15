@@ -8,7 +8,11 @@ We are Paul Scherer, Chris Swart, David Schott and Nial Atkin (in no particular 
 
 ### MLH HACK THE BURGH GAMES ###
 - Best Selfie with Angus Participations
-- Biggest & Baddest Error Message under 5 5 Lines 
+- Biggest & Baddest Error Message under 5 Lines
+- Best Edinburgh Related Vine
+- Photo of cutest Hackcouple
+- Grass from a cricket pitch
+- Best Battle Cry
 
 ### MINI EVENT PARTICIPATIONS ###
 
