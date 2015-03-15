@@ -6,7 +6,7 @@ overflow:auo;
 .fleft {
     float:left; 
     width: 50%;
-    height: 600px;
+    height: 100%;
     position: relative;
 }
 
@@ -14,5 +14,5 @@ overflow:auo;
     float: right;
     position: relative;
     width: 50%;
-    height: 600px;
+    height: 100%;
 }
