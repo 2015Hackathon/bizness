@@ -70,10 +70,11 @@ def hello_monkey():
 	"""Respond and greet the caller by name."""
 	
 	from_number = request.values.get('From', None)
+	message_body = request.values.get('Body', None)
 	if from_number in callers:
-		message = callers[from_number] + ", thanks for the message!"
+		message = callers[from_number] + ", thanks for the message!" + message_body
 	else:
-		message = "Monkey, thanks for the message!"
+		message = "Non Stratton Oakmont Client, thanks for the message! But please sign up for our Service"
 
 	resp = twilio.twiml.Response()
 	resp.message(message)
