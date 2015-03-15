@@ -83,3 +83,19 @@ def hello_monkey():
 
 if __name__ == "__main__":
 	app.run(debug=True)
+
+@app.route("/phone", methods =['GET', 'POST'])
+def  callhandle():
+	""" 
+	Responds to different callers based on their message and
+	calls then by name if they are part of the callers list.
+	"""
+
+	from_number = request.values.get('From', None)
+	message_body = request.values.get('Body', None)
+
+	if from_number in callers:
+		if 
+		message = "Hello " + callers[from_number] + ", thanks for the message"
+	else:
+		message = "Hello you are not a Stratton Oakmont Client, but thanks for the message! Please sign "
