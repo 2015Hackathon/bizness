@@ -95,7 +95,14 @@ def  callhandle():
 		# Registering new members
 		if (len(message_body) >= 10 and message_body[0:9] == "Register"):
 			newName = message_body[9:]
-			callers[from_number] = newName			
+			callers[from_number] = newName
+
+			message = "Thank you for registering " + newName + "."
+			resp = twilio.twiml.Response()
+			resp.message(message)
+			
+			return str(resp)
+
 
 		# Bloomberg API section
 		if message_valid != 0:
