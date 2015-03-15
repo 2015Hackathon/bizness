@@ -7,10 +7,12 @@ overflow:auo;
     float:left; 
     width: 50%;
     height: 600px;
+    position: relative;
 }
 
 .fright {
     float: right;
+    position: relative;
     width: 50%;
     height: 600px;
 }
