@@ -19,50 +19,44 @@ def index():
 	return """
 		<html>
 		<head>
-		 
-		  <!-- Basic Page Needs
-		  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-		  <meta charset="utf-8">
-		  <title>Stratton Oakmont</title>
-		  <meta name="description" content="">
-		  <meta name="author" content="">
-		 
-		  <!-- Mobile Specific Metas
-		  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-		  <meta name="viewport" content="width=device-width, initial-scale=1">
-		 
-		  <!-- FONT
-		  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-		  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-		 
-		  <!-- CSS
-		  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-		  <link rel="stylesheet" href="css/normalize.css">
-		  <link rel="stylesheet" href="css/skeleton.css">
-		 
-		  <!-- Favicon
-		  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-		  <link rel="icon" type="image/png" href="images/favicon.png">
-		 
+		<!-- Basic Page Needs
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		<meta charset="utf-8">
+		<title>Stratton Oakmont Inc.</title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<!-- Mobile Specific Metas
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- FONT
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		<link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+		<!-- CSS
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/skeleton.css">
+		<!-- Favicon
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		<link rel="icon" type="image/png" href="images/favicon.png">
 		</head>
 		<body>
-		 
-		  <!-- Primary Page Layout
-		  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-		  <div class="container">
-		    <div class="row">
-		      <div class="one-half column" style="margin-top: 25%">
-		        <h3>Stratton Oakmont </h3>
-		          <img src="http://s3.amazonaws.com/FratMusic-Site-Images/assets/cover/stratton.png" />
-		        <p>We are a trustworthy and experienced set of business/engineering individuals interested in making absolutely legal and morally strong business decisions to honourable business men and women working in the stockexchange market of the 80s.
-		 
-		We are Paul Scherer, Chris Swart, David Schott and Nial Atkin (in no particular order).</p>
-		      </div>
-		    </div>
-		  </div>
-		 
+		<!-- Primary Page Layout
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		<h1 style="color: green; text-align:center">Stratton Oakmont Inc.</h1>
+		<div style="width:82.5%; height:82.5%;">
+		<div style="float:right; width:54%;margin-top:1%">
+		<img src="http://s3.amazonaws.com/FratMusic-Site-Images/assets/cover/stratton.png">
+		</div>
+		</div>
+		<div class="container" style="margin-top:25%">
+		<strong style="font-size: 15px">We are a trustworthy and experienced set of business/engineering individuals interested in making absolutely legal and morally strong business decisions to honourable business men and women working in the stockexchange market of the 80s.
+		We are Paul Scherer, Chris Swart, David Schott and Nial Atkin (in no particular order).</strong>
+		</div>
+		<br>
+		<br>
+		<h5 align="center">Try sending us an SMS with either 'CTDEM10Y' or 'PX LAST' on: +44 166 991 2029</h5>
 		<!-- End Document
-		  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 		</body>
 		</html>
 			"""
@@ -102,21 +96,37 @@ def  callhandle():
 		# Party Time
 		if message_body in ["party time", "party", "p time"]:
 			message = "Are you sure " + callers[from_number] + "?"
+			resp = twilio.twiml.Response()
+			resp.message(message)
+			
+			return str(resp)
 
 		if message_body in ["oh yass", "oh yes"]:
 			message = "Ok Sir, its time to party like its 1989, the current street price the following fun stuffs is \n" + "COCO = $30/g\n" + "Chocolate Milk = $3\n" + "Silly String = $3\n"
+			resp = twilio.twiml.Response()
+			resp.message(message)
+			
+			return str(resp)
 
 		# Bloomberg API section
 		if message_body in securities:
 			#bloomberg_info = 
 			message = message + "You have requested information on: " + message_body + " here you go, have a wonderful day."
+			resp = twilio.twiml.Response()
+			resp.message(message)
+			
+			return str(resp)
 		else: 
 			message = message + "You have requested information on a stock that does not exist, or one we do not have information on currently"
+			resp = twilio.twiml.Response()
+			resp.message(message)
+			
+			return str(resp)
 	
 	else:
 		message = "Hello you are not a Stratton Oakmont Client, but thanks for the message! Please sign up with one of our members if you want to use our venerable service - Stratton Oakmont 1989"
 
-	resp = twilio.twiml.Response()
-	resp.message(message)
-	
-	return str(resp)
+		resp = twilio.twiml.Response()
+		resp.message(message)
+		
+		return str(resp)
