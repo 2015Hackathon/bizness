@@ -12,8 +12,6 @@ callers = {
 "+447703450135": "Mr. Nial",
 }
 
-securities = ["ACC US Equity", "GOOG US Equity", "AAPL US Equity"]
-
 def get_ab_in_csv(inputC, filename):
 	f = open(filename, newline = '')
 	reader = csv.reader(f, delimiter=',')
