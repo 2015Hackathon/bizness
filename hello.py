@@ -1,5 +1,5 @@
 from flask import Flask, request, redirect, render_template
-from bloomberg-api.current_data_dynamic import request_this
+from current_data_dynamic import request_this
 import json
 import twilio.twiml
 import ast
