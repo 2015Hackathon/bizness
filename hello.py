@@ -11,7 +11,7 @@ callers = {
 "+447703450135": "Mr. Nial",
 }
 
-securities = ["geil"]
+securities = ["geil", "bp oil"]
 
 @app.route("/")
 @app.route("/index")
@@ -71,8 +71,12 @@ def  callhandle():
 
 		# Bloomberg API section
 		if message_body in securities:
-			#bloomberg_info = 
-			message = message + "You have requested information on: " + message_body + " here you go, have a wonderful day."
+			bloomberg_info = ""
+
+			if message_body == "bp oil":
+				bloomberg_info = "The Current Price of BP Oil is $500 per barrel"
+
+			message = message + "You have requested information on: " + message_body + " here you go: " + bloomberg_info + " have a wonderful day."
 			resp = twilio.twiml.Response()
 			resp.message(message)
 			
