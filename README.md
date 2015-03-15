@@ -12,6 +12,7 @@ We are Paul Scherer, Chris Swart, David Schott and Nial Atkin (in no particular 
 - Biggest & Baddest Error Message under 5 Lines
 - Best Edinburgh Related Vine
 - Photo of cutest Hackcouple
+![Couple](couple.jpg)
 - Grass from a cricket pitch
 - Best Battle Cry
 
