@@ -89,7 +89,27 @@ def  callhandle():
 			return str(resp)
 	
 	else:
-		message = "Hello you are not a Stratton Oakmont Client, but thanks for the message! Please sign up with one of our members if you want to use our venerable service - Stratton Oakmont 1989"
+		message = "Hello non Stratton Oakmont Client, thanks for the message!\n"
+		
+		# Bloomberg API section
+		if message_body in securities:
+			bloomberg_json = request_this([message_body],["PX_LAST"])
+			bloomberg_dict = ast.literal_eval(bloomberg_json)
+			bloomberg_info = str(bloomberg_dict["data"][0]["securityData"][0]["fieldData"]["PX_LAST"])
+
+
+			message = message + "You have requested the last price on: " + message_body + " here you go: " + bloomberg_info + " have a wonderful day." + " Please sign up with one of our members if you want to use our venerable service - Stratton Oakmont 1989"
+			resp = twilio.twiml.Response()
+			resp.message(message)
+			
+			return str(resp)
+		else: 
+			message = message + "You have requested information on a stock that does not exist, or one we do not have information on currently.\n" + "Please sign up with one of our members if you want to use our venerable service - Stratton Oakmont 1989"
+			resp = twilio.twiml.Response()
+			resp.message(message)
+			
+			return str(resp)
+
 
 		resp = twilio.twiml.Response()
 		resp.message(message)
