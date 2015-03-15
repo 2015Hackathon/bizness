@@ -73,9 +73,10 @@ def  callhandle():
 		if message_body in securities:
 			bloomberg_json = request_this([message_body],["PX_LAST"])
 			bloomberg_dict = ast.literal_eval(bloomberg_json)
-			bloomberg_info = bloomberg_dict["data"][0]["securityData"][0]["fieldData"]["PX_LAST"]
+			bloomberg_info = str(bloomberg_dict["data"][0]["securityData"][0]["fieldData"]["PX_LAST"])
 
-			message = message + "You have requested information on: " + message_body + " here you go: " + bloomberg_info + " have a wonderful day."
+
+			message = message + "You have requested the last price on: " + message_body + " here you go: " + bloomberg_info + " have a wonderful day."
 			resp = twilio.twiml.Response()
 			resp.message(message)
 			
