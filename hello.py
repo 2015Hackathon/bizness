@@ -1,17 +1,16 @@
 from flask import Flask, request, redirect, render_template
+from bloomberg-api.current_data_dynamic import request_this
+import json
 import twilio.twiml
 
 app = Flask(__name__)
 # Try adding your own number to this list!
 callers = {
-"+14158675309": "Curious George",
-"+14158675310": "Boots",
-"+14158675311": "Virgil",
 "+447934171645": "Mr. Paul",
 "+447703450135": "Mr. Nial",
 }
 
-securities = ["geil", "bp oil"]
+securities = ["IBM", "ACC", "GOOG", "AAPL"]
 
 @app.route("/")
 @app.route("/index")
@@ -73,8 +72,9 @@ def  callhandle():
 		if message_body in securities:
 			bloomberg_info = ""
 
-			if message_body == "bp oil":
-				bloomberg_info = "The Current Price of BP Oil is $500 per barrel"
+			if message_body == securities[message_body]:
+				bloomberg_json = request_this([message],["PX_LAST"])
+				bloomberg_info = bloomberg_json["data"]["securityData"]["fieldData"]["PX_LAST"]
 
 			message = message + "You have requested information on: " + message_body + " here you go: " + bloomberg_info + " have a wonderful day."
 			resp = twilio.twiml.Response()

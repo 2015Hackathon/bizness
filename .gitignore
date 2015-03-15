@@ -38,5 +38,4 @@ sandbox/
 
 # Boolmberg keys & certificates
 ####
-*.key
-*.crt
+
